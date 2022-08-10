@@ -10,7 +10,7 @@ export interface ExpenseDTO {
 }
 
 function validateHeaders(headers: string) {
-    const fields: string[] = headers.split(',');
+    const fields: string[] = headers.split('\t');
     const expectedHeaders: string[] = ['expenseDate', 'description', 'category', 'amount', 'discount', 'total'];
     for(const expectedHeader of expectedHeaders) {
         if (fields.indexOf(expectedHeader) < 0) {
@@ -20,7 +20,7 @@ function validateHeaders(headers: string) {
 }
 
 function readContent(expense: string): ExpenseDTO {
-    const fields: string[] = expense.split(',');
+    const fields: string[] = expense.split('\t');
     return {
         expenseDate: fields[0],
         description: fields[1],

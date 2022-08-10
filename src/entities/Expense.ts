@@ -3,7 +3,7 @@ import {ExpenseDTO} from "../api/repository/expense-api";
 export class Expense {
     constructor(private dto: ExpenseDTO) {
     }
-    date() {
+    expenseDate() {
         return this.dto.expenseDate;
     }
     description() {
