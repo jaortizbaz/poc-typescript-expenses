@@ -1,7 +1,9 @@
 import {useQuery} from "@tanstack/react-query";
 import {useCallback} from "react";
+import {useNavigate} from 'react-router-dom';
 import {getExpenses} from "../../api/service/expense-service";
 import {ExpensesTable} from "../../components/expenses-table";
+import {Spinner} from "react-bootstrap";
 
 export function Expenses() {
     const query = useQuery(['expenses'], () => getExpenses());
@@ -20,18 +22,18 @@ export function Expenses() {
     return (
         <>
             <div>
-                <button onClick={refetch}>
+                <button type="button" onClick={refetch}>
                     Load Expenses
-                </button>
-                <button onClick={refetch}>
-                    Create Expense
                 </button>
             </div>
 
             {query.isFetching && (
-                <p style={{fontStyle: "oblique"}}>
-                    Loading...
-                </p>
+                <>
+                    <Spinner animation={"border"} variant={"info"} />
+                    <p style={{fontStyle: "oblique"}}>
+                        Loading...
+                    </p>
+                </>
             )}
 
             {query.data && query.data.length && (
